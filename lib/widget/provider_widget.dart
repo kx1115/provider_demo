@@ -15,7 +15,6 @@ class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget{
 }
     
 class _ProviderWidgetState<T extends ChangeNotifier> extends State<ProviderWidget<T>> {
-//  class _ProviderWidgetState<T extends ChangeNotifier> extends State<ProviderWidget<T>> {
   @override
   void initState() {
     super.initState();
@@ -28,9 +27,17 @@ class _ProviderWidgetState<T extends ChangeNotifier> extends State<ProviderWidge
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>(
       create: (_) => widget.model,
-      child: Consumer<T>(
+      child:       
+      Consumer<T>(//通过Consumer可以取到context
         builder: widget.builder,
       ),
+
+      //下面的也可以实现
+      // Builder(builder: (context){
+      //   T m=Provider.of<T>(context);
+      //   context.read
+      //   return widget.builder(context,m,null);
+      // })
     );
   }
 
